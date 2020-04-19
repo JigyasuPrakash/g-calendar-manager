@@ -1,0 +1,17 @@
+{
+  "name": "my-google-calendar",
+  "version": "1.0.0",
+  "description": "A simple application which manages google calender",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Jigyasu Prakash",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
