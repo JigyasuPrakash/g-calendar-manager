@@ -1,15 +1,42 @@
 const express = require('express');
-const authRoutes = require('./routes/auth-routes');
-// Initialise Express Application
+const nunjucks = require('nunjucks');
+const session = require('express-session');
+const indexRouter = require('./routes/index-route');
+
 const app = express();
-app.set('view engine', 'ejs');
 
-app.use('/auth', authRoutes);
+// nunjucks config
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app
+});
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+// init static files
+// this files contain css and js for views
+app.use(express.static('public'))
 
-// Start Server at assigned port
+// express-session config
+app.use(
+  session({
+    name: 'sid',
+    saveUninitialized: false,
+    resave: false,
+    secret: 'sssh, quiet! it\'s a secret!',
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 2,
+      sameSite: true,
+      secure: process.env.NODE_ENV === 'production'
+    }
+  })
+)
+
+// test route
+app.get('/index', (req, res) => {
+  res.send('App works');
+});
+
+// index route
+app.use('', indexRouter);
+
 var PORT = process.env.PORT || 3000;
-app.listen(PORT, () => { console.log(`Server created at port ${PORT}`) });
+app.listen(PORT, () => { console.log(`Server started at port ${PORT}`) })
