@@ -12,56 +12,114 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
-<body onload="fetchEvent()">
+<body onload="loaded()">
   <nav class="navbar navbar-dark bg-dark">
     <a href="/" class="navbar-brand">G-Calendar Manager</a>
-    <button class="btn btn-success" onclick="fetchEvent()">Reload Events</button>
+    <button class="btn btn-success" onclick="fetchEvent()">Refresh Events</button>
   </nav>
   <div class="container">
     <br>
     <div class="row">
-      <div class="col-sm-12" style="padding: 10px;">
-        <div class="card text-center">
-          <div class="card-body">
-            <img src="{{ displayPicture }}" width="50">
-            <h5 class="card-title">{{ name }}</h5>
-            <p class="card-text">{{ email }}</p>
-            <a href="/logout" class="btn btn-danger">Logout</a>
+      <div class="col-sm-6">
+        <div class="col-sm-12" style="padding: 10px;">
+          <div class="card text-center">
+            <div class="card-body">
+              <img src="{{ displayPicture }}" width="60">
+              <h5 class="card-title">{{ name }}</h5>
+              <p class="card-text">{{ email }}</p>
+              <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" style="padding: 10px;">
+          <div class="card text">
+            <div class="card-header">
+              Create Event
+            </div>
+            <div class="card-body">
+              <form id="create-form">
+                <input type="text" name="title" class="form-control" placeholder="Title of event">
+                <input type="text" name="description" class="form-control" placeholder="Description">
+                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 1 Email">
+                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 2 Email">
+                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 3 Email">
+                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 4 Email">
+                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 5 Email">
+                <button type="submit" class="btn btn-primary">Create</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <h4>Your Upcoming Events:</h4>
-    <div class="row">
-      <div class="col-sm-4" style="padding: 10px;">
-        <div class="card text-center">
-          <div class="card-header">
-            Featured
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+      <div class="col-sm-6">
+        <h4>Your Upcoming Events:</h4>
+        <div id="result-section">
         </div>
       </div>
     </div>
-  </div>
 </body>
 
 <!--Custom JavaScript is added here-->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script>
+  function loaded() {
+    fetchEvent();
+    var createForm = document.querySelector('#create-form');
+    if (createForm != null) {
+      createForm.addEventListener('submit', e => {
+        e.preventDefault();
+        $.ajax({
+          url: '/createevent',
+          method: 'GET',
+          data: {
+            title: createForm.title.value,
+            description: createForm.description.value,
+            attendees: createForm.attendees
+          },
+          success: function (result) {
+            alert("Event Created Successfully!");
+            fetchEvent();
+          }
+        })
+      })
+    }
+  }
+
   function fetchEvent() {
-    console.log("Fetching new events");
+    clearResult();
     $.ajax({
       url: '/getevents',
       method: 'GET',
       success: function (result) {
-        console.log('TYPE: ' + typeof (result) + '\t DATA:' + result);
+        console.log(result);
+        updateUI(result);
       }
     });
   }
+
+  function clearResult() {
+    $("#result-section").empty();
+  }
+
+  function updateUI(result) {
+    result.forEach(event => {
+      $("#result-section").append(`
+        <div class="col-sm-12" style = "padding: 10px;">
+          <div class="card text-center">
+            <div class="card-header">
+              ${event.start.dateTime}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">${event.summary}</h5>
+              <p class="card-text">${event.description}</p>
+              <a href="${event.htmlLink}" class="btn btn-primary">Visit</a>
+            </div>
+          </div>
+        </div >  
+      `);
+    })
+  }
+
 </script>
 
 </html>

@@ -13,17 +13,51 @@ module.exports.listEvents = function (auth, cb) {
     const events = res.data.items;
     if (events.length) {
       cb(events)
-      //   console.log(events);
-      // console.log('Upcoming 10 events:');
-      // events.map((event, i) => {
-      //     cb({start: event.start.dateTime || event.start.date, event: event.summary})
-      // //   const start = event.start.dateTime || event.start.date;
-      // //   console.log(`${start} - ${event.summary}`);
-      // // cb(items);
-      // });
     } else {
       console.log('No upcoming events found.');
       cb()
     }
   });
+}
+
+module.exports.createEvent = function (auth, title, description, attendees, cb) {
+  const calendar = google.calendar({ version: 'v3', auth });
+
+  const startTime = new Date();
+  startTime.setDate(startTime.getDate() + 2);
+
+  const endTime = new Date();
+  endTime.setDate(endTime.getDate() + 2);
+  endTime.setMinutes(endTime.getMinutes() + 30);
+
+  var event = {
+    'summary': title,
+    'location': 'New Delhi, India',
+    'description': description,
+    'start': {
+      'dateTime': startTime,
+      'timeZone': 'Asia/Kolkata',
+    },
+    'end': {
+      'dateTime': endTime,
+      'timeZone': 'Asia/Kolkata',
+    },
+    'attendees': attendees,
+    'reminders': {
+      'useDefault': false,
+      'overrides': [
+        { 'method': 'email', 'minutes': 24 * 60 },
+      ],
+    },
+    ColorId: 2
+  };
+
+  calendar.events.insert({
+    auth: auth,
+    calendarId: 'primary',
+    resource: event
+  }, (err, event) => {
+    if (err) return console.log('Error contacting the calendar service')
+    cb(event.htmlLink);
+  })
 }

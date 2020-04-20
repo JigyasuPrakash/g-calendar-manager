@@ -74,7 +74,31 @@ router.get('/getevents', (req, res) => {
         });
 
     } else {
-        res.redirect('/login')
+        res.redirect('/login');
+    }
+})
+
+router.get('/createevent', (req, res) => {
+    if (req.session.user) {
+        let title = req.query.title;
+        let description = req.query.description;
+        let attendees = req.query.attendees;
+
+        //Create Event
+        const oauth2Client = new google.auth.OAuth2();
+        oauth2Client.setCredentials({
+            access_token: req.session.user.accessToken
+        });
+
+        googleCalenderService.createEvent(oauth2Client, title, description, attendees, (eventLink) => {
+            const data = {
+                eventLink: eventLink
+            }
+            res.json(data);
+        })
+
+    } else {
+        res.redirect('/login');
     }
 })
 
