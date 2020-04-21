@@ -1,11 +1,10 @@
 const { google } = require('googleapis');
-const keys = require('./keys');
 
 // google app config
 const googleConfig = {
-    clientId: keys.api.clientID,
-    clientSecret: keys.api.clientSecret,
-    redirect: 'http://localhost:3000/auth/success'
+    clientId: process.env.clientID,
+    clientSecret: process.env.clientSecret,
+    redirect: 'https://g-calendar-manager.herokuapp.com/auth/success'
 }
 
 // scopes use for the application

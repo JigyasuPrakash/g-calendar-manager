@@ -66,7 +66,7 @@ To integrate google calendar using NodeJS as backend and following feature shoul
 ### Developer
 - [Jigyasu Prakash]
 
-[v1.0]: <>
+[v1.0]: <https://github.com/JigyasuPrakash/g-calendar-manager/tree/1379f6374e27e09336c483018f903a6ae599d843>
 [express]: <https://expressjs.com/>
 [Google Api]: <https://developers.google.com/apis-explorer>
 [Jigyasu Prakash]: <https://itsjigyasu.me/>

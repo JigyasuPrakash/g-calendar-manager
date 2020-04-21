@@ -13,7 +13,7 @@ nunjucks.configure('views', {
 
 // init static files
 // this files contain css and js for views
-app.use(express.static('public'))
+app.use(express.static('./public'))
 
 // express-session config
 app.use(
@@ -38,5 +38,5 @@ app.get('/index', (req, res) => {
 // index route
 app.use('', indexRouter);
 
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Server started at port ${PORT}`) });
