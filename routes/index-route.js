@@ -41,8 +41,6 @@ router.get('/redirect', (req, res) => {
     res.render('redirect.html');
 });
 
-
-
 // dashboard
 router.get('/dashboard', (req, res) => {
     if (req.session.user) {
@@ -70,7 +68,9 @@ router.get('/getevents', (req, res) => {
 
         // get calendar events by passing oauth2 client
         googleCalenderService.listEvents(oauth2Client, (events) => {
-            res.json(events);
+            res.json({
+                events: events
+            });
         });
 
     } else {
@@ -82,8 +82,13 @@ router.get('/createevent', (req, res) => {
     if (req.session.user) {
         let title = req.query.title;
         let description = req.query.description;
-        let attendees = req.query.attendees;
-
+        let participant = req.query.attendees.split(',');
+        var attendees = [];
+        participant.forEach(ele => {
+            if (ele !== '') {
+                attendees.push({ 'email': ele });
+            }
+        })
         //Create Event
         const oauth2Client = new google.auth.OAuth2();
         oauth2Client.setCredentials({

@@ -38,13 +38,13 @@
             </div>
             <div class="card-body">
               <form id="create-form">
-                <input type="text" name="title" class="form-control" placeholder="Title of event">
-                <input type="text" name="description" class="form-control" placeholder="Description">
-                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 1 Email">
-                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 2 Email">
-                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 3 Email">
-                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 4 Email">
-                <input type="email" name="attendees[]" class="form-control" placeholder="Attendee 5 Email">
+                <input type="text" name="title" class="form-control" placeholder="Title of event*" required>
+                <input type="text" name="description" class="form-control" placeholder="Description*" required>
+                <input type="email" name="attendee1" class="form-control" placeholder="Attendee 1 Email">
+                <input type="email" name="attendee2" class="form-control" placeholder="Attendee 2 Email">
+                <input type="email" name="attendee3" class="form-control" placeholder="Attendee 3 Email">
+                <input type="email" name="attendee4" class="form-control" placeholder="Attendee 4 Email">
+                <input type="email" name="attendee5" class="form-control" placeholder="Attendee 5 Email">
                 <button type="submit" class="btn btn-primary">Create</button>
               </form>
             </div>
@@ -68,13 +68,18 @@
     if (createForm != null) {
       createForm.addEventListener('submit', e => {
         e.preventDefault();
+        let attendees = createForm.attendee1.value
+          + ',' + createForm.attendee2.value
+          + ',' + createForm.attendee3.value
+          + ',' + createForm.attendee4.value
+          + ',' + createForm.attendee5.value;
         $.ajax({
           url: '/createevent',
           method: 'GET',
           data: {
-            title: createForm.title.value,
-            description: createForm.description.value,
-            attendees: createForm.attendees
+            'title': createForm.title.value,
+            'description': createForm.description.value,
+            'attendees': attendees
           },
           success: function (result) {
             alert("Event Created Successfully!");
@@ -91,8 +96,7 @@
       url: '/getevents',
       method: 'GET',
       success: function (result) {
-        console.log(result);
-        updateUI(result);
+        updateUI(result.events);
       }
     });
   }
@@ -119,7 +123,6 @@
       `);
     })
   }
-
 </script>
 
 </html>

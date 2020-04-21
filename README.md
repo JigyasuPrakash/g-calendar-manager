@@ -1,35 +1,45 @@
-# ssd-oauth-assignment
+# G-Calendar Manager
 
-This Node.js Express server application demonstrate basic Google OAuth2 process to access user's private calendar information. A blog post explaining the basic OAuth2 process can be found [here](https://medium.com/@isuru71/google-calendar-api-with-oauth2-and-node-js-25f17521c1f3).
+[![GitHub issues](https://img.shields.io/github/issues/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/issues) [![GitHub forks](https://img.shields.io/github/forks/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/network) [![GitHub stars](https://img.shields.io/github/stars/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/stargazers) [![GitHub license](https://img.shields.io/github/license/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/blob/master/LICENCE) 
+![Server](https://img.shields.io/badge/Backend-Node_JS-brightgreen) ![Server](https://img.shields.io/badge/Server-Express_JS-brightgreen) ![API](https://img.shields.io/badge/API-Google_API-brightgreen)
 
-## Setup
+A simple to use google calendar manager built using Google Calendar API.
 
-Clone the repo and install dependencies
+### Aim
+To integrate google calendar using NodeJS as backend and following feature should be implemented.
 
-```
-git clone https://github.com/robotikka/ssd-oauth-assignment.git
-cd ssd-oauth-assignment 
-```
-```
-npm install
-```
+- User should be able to authenticate with the system with the users gmail account.
+- Build a web server to read users upcoming events and give the events in a json.
+- Build a web service to send an event.
+  - It should accept email id's as input
+  - Body of the meeting.
+  - Title of the meeting.
 
-Create an Google Console API application from [here](https://console.developers.google.com/) and enable Google Calendar API.
+### Approach
+- Create a [express] web application which handles users request and responses.
+- [Google API] for getting access of users google calendar.
 
-Create an .env file in the root directory as follows
-```
-GOOGLE_CLIENT_ID = [Application Client ID]
-GOOGLE_CLIENT_SECRET = [Application Client Secret]
+### Features
+- Very simple and light weight UI.
+- Easy to create google calendar events and share with friends and colleages (at max 5).
 
-SESSION_NAME = "GoogleOAuthSession"
-SESSION_SECRET = "secretsecret"
-```
+### Teach Stack
+- Frontend
+  - HTML
+  - Bootstrap
+  - JQuery
+- Backend
+  - Javascript
+  - Express JS
+  - Node JS
+- External API
+  - Google Calendar API v3
 
-To start express server, run the following
-```
-npm test
-```
+### Version
+| Tag    | Date           | Description   |
+|--------|----------------|---------------|
+| [v1.0] | 21 April, 2020 | First Release |
 
-Visit http://localhost:3000/ on your browser to access the application.
-
-> This application is developed for the 2nd Assignment of Secure Software Development module offered in 4th year 2nd semester of BSc. in Information Technology specialized in Software Engineering degree at Sri Lanka Institute of Information Technology.
+[v1.0]: <>
+[express]: <https://expressjs.com/>
+[Google Api]: <https://developers.google.com/apis-explorer>
