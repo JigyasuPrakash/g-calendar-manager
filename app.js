@@ -38,5 +38,5 @@ app.get('/index', (req, res) => {
 // index route
 app.use('', indexRouter);
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 app.listen(PORT, () => { console.log(`Server started at port ${PORT}`) });

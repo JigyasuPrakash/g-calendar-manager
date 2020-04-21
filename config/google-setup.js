@@ -5,7 +5,7 @@ const keys = require('./keys');
 const googleConfig = {
     clientId: keys.api.clientID,
     clientSecret: keys.api.clientSecret,
-    redirect: 'http://localhost:3000/auth/success'
+    redirect: 'http://gcalendar.openode.io/auth/success'
 }
 
 // scopes use for the application
