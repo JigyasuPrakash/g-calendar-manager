@@ -23,6 +23,29 @@ To integrate google calendar using NodeJS as backend and following feature shoul
 - Very simple and light weight UI.
 - Easy to create google calendar events and share with friends and colleages (at max 5).
 
+### How to use
+1. Click on "Login with Google" to authenticate your google account with the application
+<img src="./public/assets/img/pre1.png" style="width: 60%">
+
+2. Enter your google credentials and continue
+<img src="./public/assets/img/pre2.png" style="width: 60%">
+
+3. Allow permissions to let G-Calendar Manager access your google calendar
+<img src="./public/assets/img/pre3.png" style="width: 60%">
+
+4. There you go, you reached to dashboard
+<img src="./public/assets/img/pre4.png" style="width: 60%">
+
+5. Now lets create an event and share with 2 friends, complete the details and click "Create"
+<img src="./public/assets/img/pre5.png" style="width: 60%">
+
+6. An alert is shows which shows the event is successfully created.
+<img src="./public/assets/img/pre6.png" style="width: 60%">
+
+7. The updated events is fetched again and the newly created event is visible on the dashboard
+<img src="./public/assets/img/pre7.png" style="width: 60%">
+
+
 ### Teach Stack
 - Frontend
   - HTML
@@ -40,6 +63,10 @@ To integrate google calendar using NodeJS as backend and following feature shoul
 |--------|----------------|---------------|
 | [v1.0] | 21 April, 2020 | First Release |
 
+### Developer
+- [Jigyasu Prakash]
+
 [v1.0]: <>
 [express]: <https://expressjs.com/>
 [Google Api]: <https://developers.google.com/apis-explorer>
+[Jigyasu Prakash]: <https://itsjigyasu.me/>

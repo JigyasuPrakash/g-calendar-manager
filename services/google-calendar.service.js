@@ -29,7 +29,6 @@ module.exports.createEvent = function (auth, title, description, attendees, cb) 
   const endTime = new Date();
   endTime.setDate(endTime.getDate() + 2);
   endTime.setMinutes(endTime.getMinutes() + 30);
-  console.log(attendees);
   var event = {
     'summary': title,
     'location': 'New Delhi, India',
