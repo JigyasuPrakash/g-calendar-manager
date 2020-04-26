@@ -1,7 +1,7 @@
 # G-Calendar Manager
 
 [![GitHub issues](https://img.shields.io/github/issues/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/issues) [![GitHub forks](https://img.shields.io/github/forks/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/network) [![GitHub stars](https://img.shields.io/github/stars/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/stargazers) [![GitHub license](https://img.shields.io/github/license/JigyasuPrakash/g-calendar-manager)](https://github.com/JigyasuPrakash/g-calendar-manager/blob/master/LICENCE) 
-![Deploy](https://img.shields.io/badge/Deploed_On-OpeNode-brightgreen) ![Backend](https://img.shields.io/badge/Backend-Node_JS-brightgreen) ![Server](https://img.shields.io/badge/Server-Express_JS-brightgreen) ![API](https://img.shields.io/badge/API-Google_API-brightgreen) ![Docker](https://img.shields.io/badge/-Docker-blue)
+![Deploy](https://img.shields.io/badge/Deployed_On-OpeNode-brightgreen) ![Backend](https://img.shields.io/badge/Backend-Node_JS-brightgreen) ![Server](https://img.shields.io/badge/Server-Express_JS-brightgreen) ![API](https://img.shields.io/badge/API-Google_API-brightgreen) ![Docker](https://img.shields.io/badge/-Docker-blue)
 
 A simple to use google calendar manager built using Google Calendar API.
 
